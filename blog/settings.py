@@ -34,7 +34,7 @@ EMAIL_HOST_PASSWORD = 'ftrstwesljwzbeka'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 
-
+SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog_details', 
     'taggit',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [
@@ -84,8 +87,12 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'blog',
+        'USER': 'blog',
+        'PASSWORD': '5657',
+        'HOST': '',
+        'PORT': '5432',
     }
 }
 
@@ -128,6 +135,11 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+
+# Post.published.filter(title__search='django')
+
+# Post.objects.filter(title__search='django')
+# from django.contrib.postgres
 
 
 

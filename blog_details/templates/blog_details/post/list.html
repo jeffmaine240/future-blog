@@ -1,4 +1,5 @@
 {% extends "blog_details/base.html" %}
+{% load blog_tags %}
 
 {% block title %}My Blog{% endblock %}
 {% block content %}
@@ -9,7 +10,7 @@
   {% for post in posts %}
     <h2>
       <a href="{{ post.get_absolute_url }}">
-        {{ post.title }}
+        {{ post.title|title }}
       </a>
     </h2>
     <p class="tags">Tags: 
@@ -23,7 +24,7 @@
     <p class="date">
       Published {{ post.publish }} by {{ post.author.username }}
     </p>
-    {{ post.body|truncatewords:30|linebreaks }}
+    {{ post.body|markdown|truncatewords_html:30 }}
   {% endfor %}
   {% include "blog_details/pagination.html" with page=posts %}
 {% endblock %}
